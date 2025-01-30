@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truco de Famosos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #add8e6;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .menu {
+      margin-top: 50px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .game-screen {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .card {
+      border: 1px solid black;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .card img {
+      max-width: 100px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #machineCard img {
+      max-width: 120px;
+    }
+
+    #roundSummary {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #roundSummary img {
+      max-width: 120px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Truco de Famosos</h1>
+
+  <!-- Menú inicial -->
+  <div class="menu" id="menu">
+    <h2>Selecciona un modo de juego</h2>
+    <button onclick="startGame('player-vs-machine')">PROXIMAMENTE DISPONIBLE</button>
+  </div>
+
+  <!-- Pantalla de juego -->
+  <div class="game-screen" id="gameScreen">
+    <h2 id="gameMode"></h2>
+    <div id="playerCards"></div>
+    <div id="machineCard" class="hidden"></div>
+    <div id="roundSummary" class="hidden"></div>
+    <div id="actionButtons" class="hidden">
+      <button onclick="assignPoint('player')">Punto para el Jugador</button>
+      <button onclick="assignPoint('machine')">Punto para la Máquina</button>
+      <button onclick="assignPoint('tie')">Empate</button>
+    </div>
+    <div id="scoreboard">
+      <p><strong>Equipo Jugador:</strong> <span id="playerScore">0</span></p>
+      <p><strong>Equipo Máquina:</strong> <span id="machineScore">0</span></p>
+    </div>
+    <button id="nextRound" class="hidden" onclick="nextRound()">Siguiente Ronda</button>
+    <button id="endGame" onclick="endGame()">Salir del Juego</button>
+  </div>
+  <!-- Agregar el reproductor de música -->
+  <div id="musicPlayer">
+    <audio id="audioPlayer" controls>
+      <source src="aqncancion.mp4" type="audio/mp4">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+  <button onclick="reproducirMusica()" style="background-color: blue; color: white;">Reproducir sorpresa</button>
+  <script>
+    function reproducirMusica() {
+      var audio = document.getElementById("audioPlayer");
+      audio.play();
+    }
+  </script>
+  <a href="index.html">
+    <button>Elegir modo de juego</button>
+
+    <a href="explicacionmodos.html">
+        <button style="background-color: rgb(255, 23, 166); padding: 10px 20px; font-size: 1.2em; border: none; cursor: pointer;">
+          Leer explicación de cada modo
+        </button>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truco de Famosos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #add8e6; /* Celeste */
+    }
+
+    /* Animación para mover el texto */
+    @keyframes moverTexto {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    /* Estilo para la frase que se mueve */
+    .mover-frase {
+      animation: moverTexto 10s linear infinite; /* Aplica la animación al texto */
+      white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+      overflow: hidden; /* Oculta el texto que se sale del contenedor */
+      display: inline-block;
+      font-size: 24px;
+      font-weight: normal;
+      color: #333; /* Color de la frase */
+      margin-top: 20px;
+    }
+
+    .jugadores {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+    .jugador {
+      width: 45%;
+    }
+    .carta {
+      border: 1px solid black;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+    img {
+      width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .contador {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+    .seleccion-ganador {
+      margin-top: 20px;
+    }
+    .oculto {
+      display: none;
+    }
+    .pantalla-resultado {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid black;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Truco de Famosos</h1>
+
+  <!-- Frase que se moverá -->
+  <div class="mover-frase">@antesquenadie__</div>
+
+  <div class="jugadores">
+    <div id="jugador1" class="jugador">
+      <h2>Jugador 1</h2>
+    </div>
+    <div id="jugador2" class="jugador">
+      <h2>Jugador 2</h2>
+    </div>
+  </div>
+
+  <button id="jugarMano" style="background-color: red; color: white;">Jugar Mano</button>
+
+  <button id="mezclarCartas" class="oculto">¡Mezclar Cartas!</button>
+
+  <p id="resultado"></p>
+
+  <div class="contador">
+    <p><strong>Jugador 1:</strong> <span id="puntajeJugador1">0</span> - <strong>Jugador 2:</strong> <span id="puntajeJugador2">0</span></p>
+  </div>
+
+  <div id="pantallaResultado" class="pantalla-resultado">
+    <div id="cartasSeleccionadas"></div>
+    <button id="puntoJugador1">Punto para Jugador 1</button>
+    <button id="puntoJugador2">Punto para Jugador 2</button>
+    <button id="continuarMano">Empate - Continuar Mano</button>
+  </div>
+
+  <!-- Agregar el reproductor de música -->
+  <div id="musicPlayer">
+    <audio id="audioPlayer" controls>
+      <source src="aqncancion.mp4" type="audio/mp4">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+  <button onclick="reproducirMusica()" style="background-color: blue; color: white;">Reproducir sorpresa</button>
+
+  <a href="index.html">
+    <button>Elegir modo de juego</button>
+
+    <a href="explicacionmodos.html">
+        <button style="background-color: rgb(255, 23, 166); padding: 10px 20px; font-size: 1.2em; border: none; cursor: pointer;">
+          Leer explicación de cada modo
+        </button>
+  
+  <script>
+    // Función para reproducir la música
+    function reproducirMusica() {
+      const audioPlayer = document.getElementById('audioPlayer');
+      audioPlayer.play(); // Inicia la reproducción de la música
+    }
+  </script>
+  
+  <style>
+    /* Estilo del contenedor */
+    #musicPlayer {
+      text-align: center;
+      margin-top: 20px;
+    }
+  
+    /* Estilo del botón */
+    button {
+      background-color: #4CAF50; /* Verde */
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px; /* Ajusta el espacio superior aquí */
+    }
+  
+    /* Efecto cuando el mouse pasa sobre el botón */
+    button:hover {
+      background-color: #45a049;
+    }
+  
+    /* Efecto cuando el botón es presionado */
+    button:active {
+      background-color: #388e3c;
+    }
+  </style>
+  <script>
+    // Función para reproducir la música
+    function reproducirMusica() {
+      const audioPlayer = document.getElementById('audioPlayer');
+      audioPlayer.play(); // Inicia la reproducción de la música
+    }
+        const cartas = [
+      // Actores y Actrices
+      { nombre: "Ricardo Darín", valor: 9, categoria: "Actores", imagen: "CARTAS/darin.png" },
+      { nombre: "Adrián Suar", valor: 7, categoria: "Actores", imagen: "CARTAS/suar.png" },
+      { nombre: "Luisana Lopilato", valor: 7, categoria: "Actores", imagen: "CARTAS/luisana.png" },
+      { nombre: "Guillermo Francella", valor: 9, categoria: "Actores", imagen: "CARTAS/francella.png" },
+      { nombre: "Florencia Peña", valor: 7, categoria: "Actores", imagen: "CARTAS/peña.png" },
+      { nombre: "Celeste Cid", valor: 5, categoria: "Actores", imagen: "CARTAS/cid.png" },
+
+      // Cantantes
+      { nombre: "Fito Páez", valor: 9, categoria: "Cantantes", imagen: "CARTAS/fito.png" },
+      { nombre: "Charly García", valor: 9, categoria: "Cantantes", imagen: "CARTAS/charly.png" },
+      { nombre: "Abel Pintos", valor: 7, categoria: "Cantantes", imagen: "CARTAS/abel.png" },
+      { nombre: "Tini", valor: 9, categoria: "Cantantes", imagen: "CARTAS/tini.png" },
+      { nombre: "Lali", valor: 9, categoria: "Cantantes", imagen: "CARTAS/lali.png" },
+      { nombre: "Emilia Mernes", valor: 8, categoria: "Cantantes", imagen: "CARTAS/emilia.png" },
+
+      // Deportistas
+      { nombre: "Leo Messi", valor: 10, categoria: "Deportistas", imagen: "CARTAS/messi.png" },
+      { nombre: "Franco Colapinto", valor: 7, categoria: "Deportistas", imagen: "CARTAS/colapinto.png" },
+      { nombre: "Manu Ginóbili", valor: 8, categoria: "Deportistas", imagen: "CARTAS/ginobili.png" },
+      { nombre: "Peque Pareto", valor: 6, categoria: "Deportistas", imagen: "CARTAS/pareto.png" },
+      { nombre: "Gabriela Sabatini", valor: 7, categoria: "Deportistas", imagen: "CARTAS/sabatini.png" },
+      { nombre: "Ángel Di María", valor: 8, categoria: "Deportistas", imagen: "CARTAS/dimaria.png" },
+
+      // Conductores de TV
+      { nombre: "Susana Giménez", valor: 9, categoria: "Conductores", imagen: "CARTAS/susana.png" },
+      { nombre: "Mirtha Legrand", valor: 9, categoria: "Conductores", imagen: "CARTAS/mirtha.png" },
+      { nombre: "Marcelo Tinelli", valor: 8, categoria: "Conductores", imagen: "CARTAS/tinelli.png" },
+      { nombre: "Marley", valor: 6, categoria: "Conductores", imagen: "CARTAS/marley.png" },
+      { nombre: "Guido Kaczka", valor: 6, categoria: "Conductores", imagen: "CARTAS/guido.png" },
+
+      // Políticos
+      { nombre: "Perón", valor: 9, categoria: "Políticos", imagen: "CARTAS/peron.png" },
+      { nombre: "Cristina Kirchner", valor: 8, categoria: "Políticos", imagen: "CARTAS/cristina.png" },
+      { nombre: "Mauricio Macri", valor: 7, categoria: "Políticos", imagen: "CARTAS/macri.png" },
+      { nombre: "Milei", valor: 9, categoria: "Políticos", imagen: "CARTAS/milei.png" },
+      { nombre: "Eva Perón", valor: 8, categoria: "Políticos", imagen: "CARTAS/eva.png" },
+      { nombre: "Patricia Bullrich", valor: 5, categoria: "Políticos", imagen: "CARTAS/patricia.png" },
+
+      // Streaming
+      { nombre: "Ochiatto", valor: 7, categoria: "Streaming", imagen: "CARTAS/occhiato.png" },
+      { nombre: "Granados", valor: 7, categoria: "Streaming", imagen: "CARTAS/granados.png" },
+      { nombre: "Nati J", valor: 6, categoria: "Streaming", imagen: "CARTAS/natij.png" },
+      { nombre: "Leuco", valor: 7, categoria: "Streaming", imagen: "CARTAS/dleuco.png" },
+      { nombre: "Momi", valor: 6, categoria: "Streaming", imagen: "CARTAS/momi.png" },
+      { nombre: "Yoyi", valor: 7, categoria: "Streaming", imagen: "CARTAS/yoyi.png" },
+      { nombre: "Mica", valor: 7, categoria: "Streaming", imagen: "CARTAS/micav.png" },
+      { nombre: "Trinche", valor: 7, categoria: "Streaming", imagen: "CARTAS/trinche.png" },
+
+      // WandaGate
+      { nombre: "Wanda Nara", valor: 8, categoria: "WandaGate", imagen: "CARTAS/wanda.png" },
+      { nombre: "Mauro Icardi", valor: 7, categoria: "WandaGate", imagen: "CARTAS/icardi.png" },
+      { nombre: "L-Gante", valor: 7, categoria: "WandaGate", imagen: "CARTAS/lgante.png" },
+      { nombre: "Yanina Latorre", valor: 7, categoria: "WandaGate", imagen: "CARTAS/yanina.png" },
+      { nombre: "La China", valor: 8, categoria: "WandaGate", imagen: "CARTAS/china.png" },
+      { nombre: "Pampita", valor: 8, categoria: "WandaGate", imagen: "CARTAS/pampita.png" },
+
+      // Gran Hermano
+      { nombre: "Juli Poggio", valor: 6, categoria: "Gran Hermano", imagen: "CARTAS/poggio.png" },
+      { nombre: "Santiago Del Moro", valor: 7, categoria: "Gran Hermano", imagen: "CARTAS/delmoro.png" },
+      { nombre: "Furia", valor: 6, categoria: "Gran Hermano", imagen: "CARTAS/furia.png" },
+      { nombre: "Laura Ubfal", valor: 5, categoria: "Gran Hermano", imagen: "CARTAS/ubfal.png" },
+      { nombre: "Gastón Trezeguet", valor: 4, categoria: "Gran Hermano", imagen: "CARTAS/trezeguet.png" },
+      { nombre: "Sol Pérez", valor: 7, categoria: "Gran Hermano", imagen: "CARTAS/sol.png" },
+
+      // Fallecidos
+      { nombre: "Maradona", valor: 10, categoria: "Fallecidos", imagen: "CARTAS/maradona.png" },
+      { nombre: "Lanata", valor: 8, categoria: "Fallecidos", imagen: "CARTAS/lanata.png" },
+      { nombre: "Silvina Luna", valor: 6, categoria: "Fallecidos", imagen: "CARTAS/luna.png" },
+      { nombre: "Sofovich", valor: 7, categoria: "Fallecidos", imagen: "CARTAS/sofovich.png" },
+      { nombre: "Natacha Jaitt", valor: 6, categoria: "Fallecidos", imagen: "CARTAS/jaitt.png" },
+      { nombre: "Gilda", valor: 7, categoria: "Fallecidos", imagen: "CARTAS/gilda.png" },
+
+      // Influencers
+      { nombre: "Maratea", valor: 6, categoria: "Influencers", imagen: "CARTAS/maratea.png" },
+      { nombre: "Stefi Roitman", valor: 5, categoria: "Influencers", imagen: "CARTAS/stefroit.png" },
+      { nombre: "Martín Cirio", valor: 6, categoria: "Influencers", imagen: "CARTAS/cirio.png" },
+      { nombre: "Julián Serrano", valor: 4, categoria: "Influencers", imagen: "CARTAS/jserrano.png" },
+      { nombre: "Sofi Morandi", valor: 5, categoria: "Influencers", imagen: "CARTAS/morandi.png" },
+      { nombre: "Sofi Gonet", valor: 5, categoria: "Influencers", imagen: "CARTAS/sgonet.png" },
+
+      // Internacionales
+      { nombre: "Ronaldo", valor: 10, categoria: "Internacionales", imagen: "CARTAS/ronaldo.png" },
+      { nombre: "Donald Trump", valor: 10, categoria: "Internacionales", imagen: "CARTAS/trump.png" },
+      { nombre: "Papá Francisco", valor: 10, categoria: "Internacionales", imagen: "CARTAS/papa.png" },
+      { nombre: "Shakira", valor: 8, categoria: "Internacionales", imagen: "CARTAS/shakira.png" },
+      { nombre: "Golda Meir", valor: 6, categoria: "Internacionales", imagen: "CARTAS/golda.png" },
+      { nombre: "Frida Khalo", valor: 6, categoria: "Internacionales", imagen: "CARTAS/frida.png" },
+
+      // Polémicos
+      { nombre: "Carmen Barbieri", valor: 6, categoria: "Polémicos", imagen: "CARTAS/carmen.png" },
+      { nombre: "Charlotte", valor: 6, categoria: "Polémicos", imagen: "CARTAS/charlotte.png" },
+      { nombre: "La Bomba Tucumana", valor: 4, categoria: "Polémicos", imagen: "CARTAS/bomba.png" },
+      { nombre: "Chano", valor: 5, categoria: "Polémicos", imagen: "CARTAS/chano.png" },
+      { nombre: "Ricardo Fort", valor: 8, categoria: "Polémicos", imagen: "CARTAS/fort.png" },
+      { nombre: "Chiqui Tapia", valor: 7, categoria: "Polémicos", imagen: "CARTAS/tapia.png" },
+      ];
+    
+      let puntajeJugador1 = 0;
+    let puntajeJugador2 = 0;
+    let turnoActual = 1;
+    let cartasJugador1 = [];
+    let cartasJugador2 = [];
+    let cartaJugador1Seleccionada = null;
+    let cartaJugador2Seleccionada = null;
+
+    const jugador1Div = document.getElementById("jugador1");
+    const jugador2Div = document.getElementById("jugador2");
+    const resultado = document.getElementById("resultado");
+    const puntajeJugador1Span = document.getElementById("puntajeJugador1");
+    const puntajeJugador2Span = document.getElementById("puntajeJugador2");
+    const jugarManoBtn = document.getElementById("jugarMano");
+    const mezclarCartasBtn = document.getElementById("mezclarCartas");
+    const pantallaResultado = document.getElementById("pantallaResultado");
+    const cartasSeleccionadasDiv = document.getElementById("cartasSeleccionadas");
+    const puntoJugador1Btn = document.getElementById("puntoJugador1");
+    const puntoJugador2Btn = document.getElementById("puntoJugador2");
+    const continuarManoBtn = document.getElementById("continuarMano");
+
+    function renderCartas() {
+      const cartasDisponibles = [...cartas];
+
+      cartasJugador1 = [
+        cartasDisponibles.splice(Math.floor(Math.random() * cartasDisponibles.length), 1)[0],
+        cartasDisponibles.splice(Math.floor(Math.random() * cartasDisponibles.length), 1)[0],
+        cartasDisponibles.splice(Math.floor(Math.random() * cartasDisponibles.length), 1)[0]
+      ];
+      cartasJugador2 = [
+        cartasDisponibles.splice(Math.floor(Math.random() * cartasDisponibles.length), 1)[0],
+        cartasDisponibles.splice(Math.floor(Math.random() * cartasDisponibles.length), 1)[0],
+        cartasDisponibles.splice(Math.floor(Math.random() * cartasDisponibles.length), 1)[0]
+      ];
+
+      actualizarVistaJugador();
+    }
+
+    function actualizarVistaJugador() {
+      jugador1Div.innerHTML = "<h2>Jugador 1</h2>";
+      jugador2Div.innerHTML = "<h2>Jugador 2</h2>";
+
+      if (turnoActual === 1) {
+        cartasJugador1.forEach((carta, index) => {
+          if (carta) {
+            jugador1Div.innerHTML += `
+              <div class="carta" onclick="elegirCarta(1, ${index})">
+                <img src="${carta.imagen}" alt="${carta.nombre}">
+              </div>
+            `;
+          }
+        });
+      } else {
+        cartasJugador2.forEach((carta, index) => {
+          if (carta) {
+            jugador2Div.innerHTML += `
+              <div class="carta" onclick="elegirCarta(2, ${index})">
+                <img src="${carta.imagen}" alt="${carta.nombre}">
+              </div>
+            `;
+          }
+        });
+      }
+    }
+
+    function elegirCarta(jugador, index) {
+      const cartaElegida = jugador === 1 ? cartasJugador1[index] : cartasJugador2[index];
+      if (!cartaElegida) return;
+
+      if (jugador === 1) {
+        cartaJugador1Seleccionada = cartaElegida;
+        cartasJugador1[index] = null;
+      } else {
+        cartaJugador2Seleccionada = cartaElegida;
+        cartasJugador2[index] = null;
+      }
+
+      turnoActual = jugador === 1 ? 2 : 1;
+
+      if (cartaJugador1Seleccionada && cartaJugador2Seleccionada) {
+        mostrarPantallaResultado();
+      } else {
+        actualizarVistaJugador();
+      }
+    }
+
+    function mostrarPantallaResultado() {
+      cartasSeleccionadasDiv.innerHTML = `
+        <div>
+          <h3>Jugador 1</h3>
+          <img src="${cartaJugador1Seleccionada.imagen}" alt="${cartaJugador1Seleccionada.nombre}">
+        </div>
+        <div>
+          <h3>Jugador 2</h3>
+          <img src="${cartaJugador2Seleccionada.imagen}" alt="${cartaJugador2Seleccionada.nombre}">
+        </div>
+      `;
+      pantallaResultado.style.display = "block";
+    }
+
+    function asignarPunto(jugador) {
+      if (jugador === 1) puntajeJugador1++;
+      else puntajeJugador2++;
+
+      actualizarPuntaje();
+      reiniciarTurno();
+    }
+
+    function actualizarPuntaje() {
+      puntajeJugador1Span.textContent = puntajeJugador1;
+      puntajeJugador2Span.textContent = puntajeJugador2;
+    }
+
+    function reiniciarTurno() {
+      cartaJugador1Seleccionada = null;
+      cartaJugador2Seleccionada = null;
+      pantallaResultado.style.display = "none";
+      actualizarVistaJugador();
+    }
+
+    function continuarMano() {
+      reiniciarTurno();
+    }
+
+    jugarManoBtn.addEventListener("click", () => {
+      renderCartas();
+      resultado.textContent = "";
+    });
+
+    mezclarCartasBtn.addEventListener("click", reiniciarTurno);
+    puntoJugador1Btn.addEventListener("click", () => asignarPunto(1));
+    puntoJugador2Btn.addEventListener("click", () => asignarPunto(2));
+    continuarManoBtn.addEventListener("click", continuarMano);
+  </script>
+
+</body>
+</html>

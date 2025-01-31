@@ -11,14 +11,17 @@
       background-color: #add8e6;
     }
 
+
     h1 {
       font-size: 36px;
       font-weight: bold;
     }
 
+
     .menu {
       margin-top: 50px;
     }
+
 
     button {
       background-color: #4CAF50;
@@ -31,14 +34,17 @@
       margin: 10px;
     }
 
+
     button:hover {
       background-color: #45a049;
     }
+
 
     .game-screen {
       display: none;
       margin-top: 20px;
     }
+
 
     .card {
       border: 1px solid black;
@@ -49,9 +55,11 @@
       cursor: pointer;
     }
 
+
     .hidden {
       display: none;
     }
+
 
     .card img {
       max-width: 100px;
@@ -59,15 +67,18 @@
       margin: 0 auto;
     }
 
+
     #machineCard img {
       max-width: 120px;
     }
+
 
     #roundSummary {
       margin-top: 20px;
       font-size: 18px;
       font-weight: bold;
     }
+
 
     #roundSummary img {
       max-width: 120px;
@@ -78,11 +89,13 @@
 <body>
   <h1>Truco de Famosos</h1>
 
+
   <!-- Menú inicial -->
   <div class="menu" id="menu">
     <h2>Selecciona un modo de juego</h2>
-    <button onclick="startGame('player-vs-machine')">PROXIMAMENTE DISPONIBLE</button>
+    <button onclick="startGame('player-vs-machine')">Jugador vs Máquina (version parejas - modo automático)</button>
   </div>
+
 
   <!-- Pantalla de juego -->
   <div class="game-screen" id="gameScreen">
@@ -119,10 +132,189 @@
   <a href="index.html">
     <button>Elegir modo de juego</button>
 
+
     <a href="explicacionmodos.html">
         <button style="background-color: rgb(255, 23, 166); padding: 10px 20px; font-size: 1.2em; border: none; cursor: pointer;">
           Leer explicación de cada modo
         </button>
 
+
+  <script>
+    const cards = [
+  { "nombre": "dukiemilia", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/dukiemilia.png" },
+  { "nombre": "icardichina", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/icardichina.png" },
+  { "nombre": "messianto", "valor": "10", "categoria": "Parejas", "imagen": "Parejas/messianto.png" },
+  { "nombre": "nicoflor", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/nicoflor.png" },
+  { "nombre": "lalipedro", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/lalipedro.png" },
+  { "nombre": "macriawada", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/macriawada.png" },
+  { "nombre": "tinellimilett", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/tinellimilett.png" },
+  { "nombre": "pollotefi", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/pollotefi.png" },
+  { "nombre": "micalicha", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/micalicha.png" },
+  { "nombre": "demichelisevangelina", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/demichelisevangelina.png" },
+  { "nombre": "candegil", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/candegil.png" },
+  { "nombre": "zenereortega", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/zenereortega.png" },
+  { "nombre": "capristoconti", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/capristoconti.png" },
+  { "nombre": "enzovalu", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/enzovalu.png" },
+  { "nombre": "sosamediavilla", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/sosamediavilla.png" },
+  { "nombre": "pampitapepa", "valor": "6", "categoria": "Parejas", "imagen": "Parejas/pampitapepa.png" },
+  { "nombre": "zairapires", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/zairapires.png" },
+  { "nombre": "homssosa", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/homssosa.png" },
+  { "nombre": "danielathiago", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/danielathiago.png" },
+  { "nombre": "littuli", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/littuli.png" },
+  { "nombre": "merymeme", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/merymeme.png" },
+  { "nombre": "pedropaula", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/pedropaula.png" },
+  { "nombre": "bautidenu", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/bautidenu.png" },
+  { "nombre": "joaquiluck", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/joaquiluck.png" },
+  { "nombre": "rolocalabro", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/rolocalabro.png" },
+  { "nombre": "julifausti", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/julifausti.png" },
+  { "nombre": "nicogime", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/nicogime.png" },
+  { "nombre": "mazzagravier", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/mazzagravier.png" },
+  { "nombre": "moriagalmarini", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/moriagalmarini.png" },
+  { "nombre": "mariarei", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/mariarei.png" },
+  { "nombre": "yaninadiego", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/yaninadiego.png" },
+  { "nombre": "duplaecharri", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/duplaecharri.png" },
+  { "nombre": "cathyova", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/cathyova.png" },
+  { "nombre": "carlamartin", "valor": "7", "categoria": "Parejas", "imagen": "Parejas/carlamartin.png" },
+  { "nombre": "micacubero", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/micacubero.png" },
+  { "nombre": "dybalaoriana", "valor": "9", "categoria": "Parejas", "imagen": "Parejas/dybalaoriana.png" },
+  { "nombre": "wandalgante", "valor": "6", "categoria": "Parejas", "imagen": "Parejas/wandalgante.png" },
+  { "nombre": "stefmontaner", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/stefmontaner.png" },
+  { "nombre": "lopilatobuble", "valor": "8", "categoria": "Parejas", "imagen": "Parejas/lopilatobuble.png" },
+  { "nombre": "tripaotero", "valor": "6", "categoria": "Parejas", "imagen": "Parejas/tripaotero.png" }
+]
+;
+
+
+    let playerScore = 0;
+let machineScore = 0;
+let currentRound = 0;
+const cardsPerPlayer = 3; // Cantidad de cartas por jugador
+let playerCards = [];
+let machineCards = [];
+
+
+function startGame(mode) {
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("gameScreen").style.display = "block";
+  document.getElementById("gameMode").innerText =
+    mode === "player-vs-machine" ? "Jugador vs Máquina" : "Jugador vs Jugador";
+
+
+  // Configurar el juego
+  if (mode === "player-vs-machine") {
+    setupPlayerVsMachine();
+  }
+}
+
+
+function setupPlayerVsMachine() {
+  const playerCardsContainer = document.getElementById("playerCards");
+  playerCardsContainer.innerHTML = "";
+
+
+  // Repartir cartas aleatorias al jugador y a la máquina
+  const allCards = [...cards].sort(() => 0.5 - Math.random());
+playerCards = allCards.slice(0, cardsPerPlayer);
+machineCards = allCards.slice(cardsPerPlayer, cardsPerPlayer * 2);
+
+
+
+
+  playerCards.forEach((card, index) => {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+    cardElement.innerHTML = `
+      <img src="${card.imagen}" alt="${card.nombre}">
+    `;
+    cardElement.onclick = () => playRound(card, machineCards[index], cardElement);
+    playerCardsContainer.appendChild(cardElement);
+  });
+}
+
+
+function playRound(playerCard, machineCard, cardElement) {
+  // Eliminar la carta seleccionada del jugador
+  cardElement.remove();
+  playerCards = playerCards.filter(card => card !== playerCard);
+
+
+  // Mostrar las cartas en el resumen
+  const roundSummary = document.getElementById("roundSummary");
+  const playerCardContainer = document.createElement("div");
+  playerCardContainer.innerHTML = `
+    <p>Carta Jugador:</p>
+    <img src="${playerCard.imagen}" alt="${playerCard.nombre}">
+  `;
+ 
+  const machineCardContainer = document.createElement("div");
+  machineCardContainer.innerHTML = `
+    <p>Carta Máquina:</p>
+    <img src="${machineCard.imagen}" alt="${machineCard.nombre}">
+  `;
+
+
+  roundSummary.innerHTML = "";
+  roundSummary.appendChild(playerCardContainer);
+  roundSummary.appendChild(machineCardContainer);
+
+
+  // Determinar el ganador de la ronda
+  if (playerCard.valor > machineCard.valor) {
+    playerScore++;
+    roundSummary.innerHTML += `<p>¡Ganó el jugador esta ronda!</p>`;
+  } else if (playerCard.valor < machineCard.valor) {
+    machineScore++;
+    roundSummary.innerHTML += `<p>¡Ganó la máquina esta ronda!</p>`;
+  } else {
+    roundSummary.innerHTML += `<p>¡Esta ronda fue un empate!</p>`;
+  }
+  roundSummary.classList.remove("hidden");
+
+
+  // Actualizar el marcador
+  document.getElementById("playerScore").innerText = playerScore;
+  document.getElementById("machineScore").innerText = machineScore;
+
+
+  currentRound++;
+
+
+  // Solo mostrar "Siguiente Ronda" si el jugador tiene cartas
+  if (playerCards.length === 0) {
+    document.getElementById("nextRound").classList.remove("hidden");
+  } else {
+    document.getElementById("nextRound").classList.add("hidden");
+  }
+
+
+  if (playerCards.length === 0) {
+    document.getElementById("endGame").innerText = "Ver resultados finales";
+  }
+}
+
+
+function nextRound() {
+  const roundSummary = document.getElementById("roundSummary");
+  roundSummary.classList.add("hidden");
+  document.getElementById("nextRound").classList.add("hidden");
+
+
+  // Repartir nuevas cartas para la siguiente ronda
+  setupPlayerVsMachine();
+}
+
+
+function endGame() {
+  alert(
+    playerScore > machineScore
+      ? "¡El jugador ganó la partida!"
+      : playerScore < machineScore
+      ? "La máquina ganó la partida."
+      : "La partida terminó en empate."
+  );
+  location.reload(); // Reiniciar el juego
+}
+  </script>
 </body>
 </html>
+

@@ -11,14 +11,17 @@
       background-color: #add8e6;
     }
 
+
     h1 {
       font-size: 36px;
       font-weight: bold;
     }
 
+
     .menu {
       margin-top: 50px;
     }
+
 
     button {
       background-color: #4CAF50;
@@ -31,14 +34,17 @@
       margin: 10px;
     }
 
+
     button:hover {
       background-color: #45a049;
     }
+
 
     .game-screen {
       display: none;
       margin-top: 20px;
     }
+
 
     .card {
       border: 1px solid black;
@@ -49,9 +55,11 @@
       cursor: pointer;
     }
 
+
     .hidden {
       display: none;
     }
+
 
     .card img {
       max-width: 100px;
@@ -59,15 +67,18 @@
       margin: 0 auto;
     }
 
+
     #machineCard img {
       max-width: 120px;
     }
+
 
     #roundSummary {
       margin-top: 20px;
       font-size: 18px;
       font-weight: bold;
     }
+
 
     #roundSummary img {
       max-width: 120px;
@@ -78,11 +89,13 @@
 <body>
   <h1>Truco de Famosos</h1>
 
+
   <!-- Menú inicial -->
   <div class="menu" id="menu">
     <h2>Selecciona un modo de juego</h2>
-    <button onclick="startGame('player-vs-machine')">PROXIMAMENTE DISPONIBLE</button>
+    <button onclick="startGame('player-vs-machine')">Jugador vs Máquina (version parejas - modo manual)</button>
   </div>
+
 
   <!-- Pantalla de juego -->
   <div class="game-screen" id="gameScreen">
@@ -119,10 +132,177 @@
   <a href="index.html">
     <button>Elegir modo de juego</button>
 
+
     <a href="explicacionmodos.html">
         <button style="background-color: rgb(255, 23, 166); padding: 10px 20px; font-size: 1.2em; border: none; cursor: pointer;">
           Leer explicación de cada modo
         </button>
 
+
+  <script>
+    const cards = [
+    
+  { "nombre": "dukiemilia", "valor": "", "categoria": "Parejas", "imagen": "Parejas/dukiemilia.png" },
+  { "nombre": "icardichina", "valor": "", "categoria": "Parejas", "imagen": "Parejas/icardichina.png" },
+  { "nombre": "messianto", "valor": "", "categoria": "Parejas", "imagen": "Parejas/messianto.png" },
+  { "nombre": "nicoflor", "valor": "", "categoria": "Parejas", "imagen": "Parejas/nicoflor.png" },
+  { "nombre": "lalipedro", "valor": "", "categoria": "Parejas", "imagen": "Parejas/lalipedro.png" },
+  { "nombre": "macriawada", "valor": "", "categoria": "Parejas", "imagen": "Parejas/macriawada.png" },
+  { "nombre": "tinellimilett", "valor": "", "categoria": "Parejas", "imagen": "Parejas/tinellimilett.png" },
+  { "nombre": "pollotefi", "valor": "", "categoria": "Parejas", "imagen": "Parejas/pollotefi.png" },
+  { "nombre": "micalicha", "valor": "", "categoria": "Parejas", "imagen": "Parejas/micalicha.png" },
+  { "nombre": "demichelisevangelina", "valor": "", "categoria": "Parejas", "imagen": "Parejas/demichelisevangelina.png" },
+  { "nombre": "candegil", "valor": "", "categoria": "Parejas", "imagen": "Parejas/candegil.png" },
+  { "nombre": "zenereortega", "valor": "", "categoria": "Parejas", "imagen": "Parejas/zenereortega.png" },
+  { "nombre": "capristoconti", "valor": "", "categoria": "Parejas", "imagen": "Parejas/capristoconti.png" },
+  { "nombre": "enzovalu", "valor": "", "categoria": "Parejas", "imagen": "Parejas/enzovalu.png" },
+  { "nombre": "sosamediavilla", "valor": "", "categoria": "Parejas", "imagen": "Parejas/sosamediavilla.png" },
+  { "nombre": "pampitapepa", "valor": "", "categoria": "Parejas", "imagen": "Parejas/pampitapepa.png" },
+  { "nombre": "zairapires", "valor": "", "categoria": "Parejas", "imagen": "Parejas/zairapires.png" },
+  { "nombre": "homssosa", "valor": "", "categoria": "Parejas", "imagen": "Parejas/homssosa.png" },
+  { "nombre": "danielathiago", "valor": "", "categoria": "Parejas", "imagen": "Parejas/danielathiago.png" },
+  { "nombre": "littuli", "valor": "", "categoria": "Parejas", "imagen": "Parejas/littuli.png" },
+  { "nombre": "merymeme", "valor": "", "categoria": "Parejas", "imagen": "Parejas/merymeme.png" },
+  { "nombre": "pedropaula", "valor": "", "categoria": "Parejas", "imagen": "Parejas/pedropaula.png" },
+  { "nombre": "bautidenu", "valor": "", "categoria": "Parejas", "imagen": "Parejas/bautidenu.png" },
+  { "nombre": "joaquiluck", "valor": "", "categoria": "Parejas", "imagen": "Parejas/joaquiluck.png" },
+  { "nombre": "rolocalabro", "valor": "", "categoria": "Parejas", "imagen": "Parejas/rolocalabro.png" },
+  { "nombre": "julifausti", "valor": "", "categoria": "Parejas", "imagen": "Parejas/julifausti.png" },
+  { "nombre": "nicogime", "valor": "", "categoria": "Parejas", "imagen": "Parejas/nicogime.png" },
+  { "nombre": "mazzagravier", "valor": "", "categoria": "Parejas", "imagen": "Parejas/mazzagravier.png" },
+  { "nombre": "moriagalmarini", "valor": "", "categoria": "Parejas", "imagen": "Parejas/moriagalmarini.png" },
+  { "nombre": "mariarei", "valor": "", "categoria": "Parejas", "imagen": "Parejas/mariarei.png" },
+  { "nombre": "yaninadiego", "valor": "", "categoria": "Parejas", "imagen": "Parejas/yaninadiego.png" },
+  { "nombre": "duplaecharri", "valor": "", "categoria": "Parejas", "imagen": "Parejas/duplaecharri.png" },
+  { "nombre": "cathyova", "valor": "", "categoria": "Parejas", "imagen": "Parejas/cathyova.png" },
+  { "nombre": "carlamartin", "valor": "", "categoria": "Parejas", "imagen": "Parejas/carlamartin.png" },
+  { "nombre": "micacubero", "valor": "", "categoria": "Parejas", "imagen": "Parejas/micacubero.png" },
+  { "nombre": "dybalaoriana", "valor": "", "categoria": "Parejas", "imagen": "Parejas/dybalaoriana.png" },
+  { "nombre": "wandalgante", "valor": "", "categoria": "Parejas", "imagen": "Parejas/wandalgante.png" },
+  { "nombre": "stefmontaner", "valor": "", "categoria": "Parejas", "imagen": "Parejas/stefmontaner.png" },
+  { "nombre": "lopilatobuble", "valor": "", "categoria": "Parejas", "imagen": "Parejas/lopilatobuble.png" },
+  { "nombre": "tripaotero", "valor": "", "categoria": "Parejas", "imagen": "Parejas/tripaotero.png" }
+];
+
+
+
+    let playerHand = [];
+    let machineHand = [];
+    let playerScore = 0;
+    let machineScore = 0;
+    let roundsPlayed = 0;
+
+
+    function startGame(mode) {
+      document.getElementById("menu").style.display = "none";
+      document.getElementById("gameScreen").style.display = "block";
+      document.getElementById("gameMode").innerText = "Modo: Jugador vs Máquina";
+      initializeMachineGame();
+    }
+
+
+    function initializeMachineGame() {
+      const shuffled = shuffle(cards);
+      playerHand = shuffled.slice(0, 3);
+      machineHand = shuffled.slice(3, 6);
+      roundsPlayed = 0;
+      updatePlayerCards();
+      document.getElementById("nextRound").classList.add("hidden");
+      document.getElementById("roundSummary").classList.add("hidden");
+      document.getElementById("machineCard").classList.add("hidden");
+    }
+
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+
+    function updatePlayerCards() {
+      const playerCardsDiv = document.getElementById("playerCards");
+      playerCardsDiv.innerHTML = "";
+      playerHand.forEach((card, index) => {
+        const cardElement = document.createElement("div");
+        cardElement.className = "card";
+        cardElement.innerHTML = `
+          <img src="${card.imagen}" alt="${card.nombre}">
+        `;
+        cardElement.onclick = () => playCard(index);
+        playerCardsDiv.appendChild(cardElement);
+      });
+    }
+
+
+    function playCard(playerIndex) {
+      const playerCard = playerHand.splice(playerIndex, 1)[0];
+      const machineCard = machineHand.splice(Math.floor(Math.random() * machineHand.length), 1)[0];
+
+
+      // Mostrar la carta de la máquina solo una vez
+      const machineCardDiv = document.getElementById("machineCard");
+      machineCardDiv.classList.remove("hidden");
+      machineCardDiv.innerHTML = `
+        <h3>Carta de la Máquina</h3>
+        <img src="${machineCard.imagen}" alt="${machineCard.nombre}">
+      `;
+
+
+      // Mostrar solo la carta jugada por el jugador
+      const roundSummary = document.getElementById("roundSummary");
+      roundSummary.classList.remove("hidden");
+      roundSummary.innerHTML = `
+        <div>
+          <h4>Carta Jugador:</h4>
+          <img src="${playerCard.imagen}" alt="${playerCard.nombre}">
+        </div>
+      `;
+
+
+      document.getElementById("actionButtons").classList.remove("hidden");
+      updatePlayerCards();
+    }
+
+
+    function assignPoint(winner) {
+      if (winner === "player") {
+        playerScore++;
+      } else if (winner === "machine") {
+        machineScore++;
+      }
+      updateScoreboard();
+      roundsPlayed++;
+
+
+      // Ocultar las cartas y los botones de acción después de asignar un punto
+      document.getElementById("actionButtons").classList.add("hidden");
+      document.getElementById("machineCard").classList.add("hidden");
+      document.getElementById("roundSummary").classList.add("hidden");
+
+
+      if (roundsPlayed === 3) {
+        document.getElementById("nextRound").classList.remove("hidden");
+      }
+    }
+
+
+    function updateScoreboard() {
+      document.getElementById("playerScore").innerText = playerScore;
+      document.getElementById("machineScore").innerText = machineScore;
+    }
+
+
+    function nextRound() {
+      initializeMachineGame();
+    }
+
+
+    function endGame() {
+        alert(`Juego terminado. Puntaje final: Jugador ${playerScore} - Máquina ${machineScore}`);
+
+
+      location.reload();
+    }
+  </script>
 </body>
 </html>
+
